@@ -60,5 +60,5 @@ for offset in range(0, 925, 25):  # Adjust the range as needed
 
 # Create a DataFrame and save to CSV
 hotels_df = pd.DataFrame(all_hotels_data)
-hotels_df.to_csv('D:/Data_Web_Scraping/hotelk.csv', header=True, index=False)
+hotels_df.to_csv('/home/pooja/Data-Engineer-1/notebook/BookingCom.csv', header=True, index=False)
 print("Scarped data")
