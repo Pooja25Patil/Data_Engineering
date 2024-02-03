@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException, StaleElementReferenceException
+import undetected_chromedriver as uc
 import time
 import csv
 
@@ -10,9 +11,11 @@ import csv
 URL = "https://de.hotels.com/Hotel-Search?adults=2&d1=2024-02-06&d2=2024-02-10&destination=London%2C%20England%2C%20Gro%C3%9Fbritannien&endDate=2024-02-10&flexibility=0_DAY&latLong=51.50746%2C-0.127673&regionId=2114&rooms=1&semdtl=&sort=RECOMMENDED&startDate=2024-02-06&theme=&useRewards=false&userIntent="
 
 # Selenium WebDriver Configuration
-options = webdriver.ChromeOptions()
-options.add_experimental_option('excludeSwitches', ['enable-logging'])
-driver = webdriver.Chrome(options=options)
+chrome_options = uc.ChromeOptions()
+driver = uc.Chrome(options=chrome_options)
+#options = webdriver.ChromeOptions()
+chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
+#driver = webdriver.Chrome(options=options)
 
 driver.get(URL)
 time.sleep(20)  # Initial wait for the page to load
