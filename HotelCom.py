@@ -1,3 +1,14 @@
+import urllib.request
+
+# URL of the file to download
+url = 'https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb'
+
+# Local path to save the downloaded file
+local_file_path = '/tmp/google-chrome-stable_current_amd64.deb'
+
+# Download the file
+urllib.request.urlretrieve(url, local_file_path)
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -8,16 +19,25 @@ import time
 import csv
 
 # URL of the site to scrape
-URL = "https://de.hotels.com/Hotel-Search?adults=2&d1=2024-02-06&d2=2024-02-10&destination=London%2C%20England%2C%20Gro%C3%9Fbritannien&endDate=2024-02-10&flexibility=0_DAY&latLong=51.50746%2C-0.127673&regionId=2114&rooms=1&semdtl=&sort=RECOMMENDED&startDate=2024-02-06&theme=&useRewards=false&userIntent="
+#URL = "https://de.hotels.com/Hotel-Search?adults=2&d1=2024-02-06&d2=2024-02-10&destination=London%2C%20England%2C%20Gro%C3%9Fbritannien&endDate=2024-02-10&flexibility=0_DAY&latLong=51.50746%2C-0.127673&regionId=2114&rooms=1&semdtl=&sort=RECOMMENDED&startDate=2024-02-06&theme=&useRewards=false&userIntent="
 
+
+options = webdriver.ChromeOptions()
+options.add_argument("--headless")
+options.add_argument('--disable-dev-shm-usage')
+options.add_argument("--no-sandbox")
+
+driver = webdriver.Chrome(
+    options=options
+)
 # Selenium WebDriver Configuration
-chrome_options = uc.ChromeOptions()
-driver = uc.Chrome(options=chrome_options)
+#chrome_options = uc.ChromeOptions()
+#driver = uc.Chrome(options=chrome_options)
 #options = webdriver.ChromeOptions()
-chrome_options.add_experimental_option('excludeSwitches', ['enable-logging'])
+options.add_experimental_option('excludeSwitches', ['enable-logging'])
 #driver = webdriver.Chrome(options=options)
 
-driver.get(URL)
+driver.get("https://de.hotels.com/Hotel-Search?adults=2&d1=2024-02-06&d2=2024-02-10&destination=London%2C%20England%2C%20Gro%C3%9Fbritannien&endDate=2024-02-10&flexibility=0_DAY&latLong=51.50746%2C-0.127673&regionId=2114&rooms=1&semdtl=&sort=RECOMMENDED&startDate=2024-02-06&theme=&useRewards=false&userIntent=")
 time.sleep(20)  # Initial wait for the page to load
 
 def dismiss_cookie_consent():
